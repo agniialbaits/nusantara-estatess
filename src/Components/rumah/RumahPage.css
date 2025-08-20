@@ -1,0 +1,193 @@
+ .title {
+    background-color: white;
+    max-width: 1400px;
+    /* padding-top: 1700px; */
+    padding-bottom: 20px;
+    margin-top: 100px;
+    padding-left: 100px;
+}
+
+.isi-title h1{
+  /* font-size: 10px; */
+}
+
+@media (max-width: 400px) {
+
+}
+
+.title h1{
+    /* margin-left: 10px; */
+    text-align: left;
+    font-size: 30px;
+}
+.title p{
+    text-align: left;
+    /* margin-left: -200px; */
+}
+
+.carirumah {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    /* margin-left: -20px; */
+    justify-content: left;
+    /* justify-items: left; */
+    
+}
+
+.search {
+  /* align-items: flex-start;  */
+  gap: 10px;
+  margin-left: 100px;
+  margin-top: 20px;
+  border-radius: 0;
+  background: transparent;
+}
+
+.search-box-carirumah {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  /* border-radius: 8px; */
+  height: 40px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: none !important;
+  /* justify-content: center; */
+  border-radius: 0;
+  border: none !important;
+  outline: none !important;
+}
+
+.search-input {
+  flex: 1;  
+  border: none !important;
+  outline: none !important;
+  font-size: 16px;
+  padding-left: 8px;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.search-box-carirumah:focus-within {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.Sbutton {
+  background-color: #00849C;
+  color: white;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  padding: 10px 20px;
+  border-radius: 0;
+  cursor: pointer;
+  height: 100%;
+  font-weight: bold;
+  transition: none;
+}
+
+.Sbutton:hover {
+  background-color: #00849C;
+  color: white;
+  transform: none;
+  box-shadow: none;
+  transition: none;
+}
+
+.custom-pagination .page-item {
+  margin: 0 6px;
+}
+
+.custom-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 20px auto;
+}
+
+.custom-pagination .page-link {
+  width: 40px;
+  height: 40px;
+  border-radius: 50% !important;
+  border: 2px solid #005A71;
+  color: #005A71;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-weight: 600;
+  background-color: transparent;
+}
+
+.custom-pagination .page-link:hover {
+  background-color: #e0f7fa;
+  text-decoration: none;
+}
+
+.custom-pagination .page-item.active .page-link {
+  background-color: #005A71;
+  color: white;
+  border-color: #005A71;
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+  .title {
+    padding-left: 24px;
+  }
+  .title h1 {
+    font-size: 26px;
+  }
+  .carirumah {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .search {
+    margin-left: 0;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .title {
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-top: 100px;
+    padding-top: 20px;
+  }
+  .title h1 {
+    font-size: 22px;
+  }
+  .title p {
+    font-size: 14px;
+  }
+  .carirumah {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .search {
+    margin-left: 0;
+    margin-top: 12px;
+  }
+  .search-box-carirumah {
+    max-width: 100%;
+  }
+  .Sbutton {
+    padding: 10px 14px;
+  }
+  .custom-pagination .page-link {
+    width: 32px;
+    height: 32px;
+  }
+  .custom-pagination .page-item {
+    margin: 0 4px;
+  }
+  .custom-pagination {
+    margin: 12px auto;
+  }
+}
+

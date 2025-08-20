@@ -1,0 +1,234 @@
+* {
+    margin: 0;
+}
+
+/* Memastikan hero section memenuhi seluruh layar */
+body, html {
+    width: 100%;
+    overflow-x: hidden;
+}
+.hero-container {
+    display: flex;
+    /* justify-content: center;    */
+    /* min-height: 100vh; */
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom right, #005A71 51%, #D7F7FF);
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+    /* align-items: center; */
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin-top: 60px;
+    overflow: hidden;
+    max-height: 800px;
+    min-height: 800px;
+    padding-top: 150px;
+  }
+
+  .hero-content {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    width: 100%;
+    max-width: 1400px;
+    /* padding: 0 20px; */
+  }
+  
+  /* === TITLE (KIRI) === */
+  .title-container {
+    z-index: 2;
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    transform: translateZ(0);
+    text-align: left;
+    margin-left: 100px;
+  }
+  
+  .title-container h1.title-h1 {
+    font-size: 48px;
+    color: white;
+    font-weight: bold;
+    line-height: 1.2;
+    margin-bottom: 25px;
+  }
+  
+  .title-container p {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 1.3rem;
+    margin-bottom: 35px;
+    line-height: 1.6;
+    max-width: 500px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  
+  /* === BUTTONS === */
+  .button-group {
+    display: flex;
+    gap: 25px;
+  }
+  
+  button {
+    background-color: #ffffff;
+    color: #005A71;
+    border: none;
+    padding: 18px 35px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .button-group .Layanan-button {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+  
+  .button-group .Layanan-button:hover {
+    background-color: white;
+    color: #005A71;
+  }
+  
+  /* === IMAGE (KANAN) === */
+  .hero-image {
+    flex: 0.8;
+    display: flex;
+    /* height: 100vh; */
+    margin-top: -50px;
+  }
+
+  .hero-image img {
+    /* width: 120%; */
+    /* max-width: 650px; */
+    height: auto;
+    object-fit: contain;
+    /* display: block; */
+    /* position: absolute; */
+    margin-right: -120px;
+  }
+
+  /* === RESPONSIVE DESIGN === */
+  @media (max-width: 768px) {
+
+    .hero-container {
+      padding-top: 30px;
+    }
+    .hero-content {
+      flex-direction: row;
+      align-items: center;
+      padding: 16px;
+      text-align: left;
+      column-gap: 12px;
+      /* padding-top: 20px; */
+    }
+
+    .title-container {
+      order: 1;
+      width: 55%;
+      padding-right: 0;
+      padding-left: 0;
+      margin-bottom: 0;
+    }
+
+    .title-container h1.title-h1 {
+      font-size: 30px;
+    }
+
+    .title-container p {
+      font-size: 0.95rem;
+    }
+
+    .hero-image {
+      order: 2;
+      flex: 0 0 45%;
+      width: 45%;
+      height: auto;
+      padding: 0 0 0 8px;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .hero-image img {
+      position: static;
+      width: 100%;
+      max-width: none;
+      height: auto;
+      right: auto;
+      bottom: auto;
+    }
+
+    button {
+      padding: 12px 20px;
+      font-size: 0.95rem;
+    }
+  }
+
+  /* Stack image below title on very small screens */
+  @media (max-width: 400px) {
+
+    .hero-container {
+      max-height: 650px;
+      min-height: 550px;
+    }
+    .hero-content {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      row-gap: 12px;
+    }
+    .title-container {
+      order: 1;
+      width: 100%;
+      margin-bottom: 8px;
+      padding: 0 8px;
+      margin-left: 0;
+    }
+    .hero-image {
+      order: 2;
+      width: 100%;
+      flex: 0 0 auto;
+      padding: 0;
+      justify-content: center;
+      align-items: center;
+      /* right: -60px; */
+    }
+    .hero-image img {
+      width: 80%;
+      max-width: 320px;
+      height: auto;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .title-container h1 {
+      font-size: 3.5rem;
+    }
+    
+    .title-container p {
+      font-size: 1.4rem;
+    }
+    
+    .hero-image img {
+      max-width: 750px;
+      right: -120px;
+      bottom: 0;
+    }
+  }

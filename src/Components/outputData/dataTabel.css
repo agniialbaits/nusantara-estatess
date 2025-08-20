@@ -1,0 +1,377 @@
+/* Reset dan base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.data-tabel-page {
+  min-height: 100vh;
+  background: #B8E6FF;
+}
+
+
+
+/* Main Content */
+.main-content {
+  padding: 140px 40px 40px 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+  min-height: calc(100vh - 200px);
+}
+
+/* Content Header */
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.btn-tambah-data {
+  background-color: #007F9F;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.btn-tambah-data:hover {
+  background-color: #006080;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #333333;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Table Container */
+.table-container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid #E0E0E0;
+}
+
+.table-scroll {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+/* Tabel utama */
+.output-table {
+  width: 100%;
+  min-width: 800px;
+  border-collapse: collapse;
+}
+
+/* Header dan sel */
+.output-table th {
+  background-color: #F8F9FA;
+  padding: 18px 16px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+  border-bottom: 1px solid #E0E0E0;
+  border-right: 1px solid #E0E0E0;
+}
+
+.output-table th:last-child {
+  border-right: none;
+}
+
+.output-table td {
+  padding: 16px;
+  border-bottom: 1px solid #F0F0F0;
+  border-right: 1px solid #F0F0F0;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 14px;
+  color: #333;
+}
+
+.output-table td:last-child {
+  border-right: none;
+}
+
+.output-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.output-table tbody tr:hover {
+  background-color: #FAFAFA;
+}
+
+/* Image Cell */
+.image-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-image {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #E0E0E0;
+}
+
+/* Kolom Harga bisa diklik */
+.sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.3s ease;
+}
+
+.sortable:hover {
+  color: #007F9F;
+}
+
+/* Tombol Action */
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Tombol umum */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: white;
+  width: 70px;
+  transition: all 0.2s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.btn-detail {
+  background-color: #17A2B8;
+}
+
+.btn-hapus {
+  background-color: #DC3545;
+}
+
+.btn-edit {
+  background-color: #28A745;
+}
+
+.btn-detail:hover {
+  background-color: #138496;
+}
+
+.btn-hapus:hover {
+  background-color: #C82333;
+}
+
+.btn-edit:hover {
+  background-color: #218838;
+}
+
+/* Bottom Footer */
+.bottom-footer {
+  background-color: #333333;
+  padding: 20px 40px;
+  margin-top: 40px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-logo-circle {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #007F9F 0%, #005f7f 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 12px;
+  color: #ffffff;
+}
+
+.footer-logo-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.footer-menu {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-menu li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.footer-menu li a:hover {
+  color: #B8E6FF;
+}
+
+/* Modal Styles */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1002;
+}
+
+.modal {
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  width: 350px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.modal h3 {
+  margin: 0 0 15px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+.modal p {
+  margin: 0 0 25px;
+  font-size: 16px;
+  color: #666;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.btn-ya,
+.btn-tidak {
+  padding: 10px 20px;
+  border: 2px solid #007F9F;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-ya {
+  background-color: #007F9F;
+  color: white;
+}
+
+.btn-ya:hover {
+  background-color: #006080;
+  border-color: #006080;
+}
+
+.btn-tidak {
+  background-color: white;
+  color: #007F9F;
+}
+
+.btn-tidak:hover {
+  background-color: #007F9F;
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 160px 20px 40px 20px;
+  }
+  
+  .content-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+  
+  .table-container {
+    overflow-x: auto;
+  }
+  
+  .output-table {
+    min-width: 600px;
+  }
+  
+  .footer-container {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+  
+  .footer-menu {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 20px;
+  }
+  
+  .btn-tambah-data {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+  
+  .output-table {
+    min-width: 500px;
+  }
+  
+  .footer-menu {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+}
