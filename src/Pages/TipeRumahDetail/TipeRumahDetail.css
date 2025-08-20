@@ -135,6 +135,8 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    background: #A4F3FF;
+    margin-bottom: 50px;
 }
 
 /* Gallery Section */
@@ -178,7 +180,7 @@
 .features-section {
     padding: 80px;
     padding-bottom: 20px;
-    background: #f8f9fa;
+    background: #A4F3FF;
 }
 
 .features-section h2 {

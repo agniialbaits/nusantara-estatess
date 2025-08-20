@@ -58,8 +58,8 @@ const LoginForm = () => {
         <div>
             <div className="form-container">
                 <form onSubmit={handleSubmit}>
-                    <div className="form-title">
-                        <img src="/logo/logo.png" alt="logo" />
+                    <div className="title-con">
+                        <img src="/logo/logo2.png" alt="logo" />
                         <h1>Selamat Datang Kembali</h1>
                         <p>Masukkan username dan password Anda dengan benar untuk mengakses akun Anda secara aman.</p>
                     </div>
@@ -77,7 +77,7 @@ const LoginForm = () => {
                         </div>
                     )}
 
-                    <div className="input-group">
+                    <div className="input-group-login">
                         <label htmlFor="username">Username atau Email</label>
                         <input 
                             type="text" 

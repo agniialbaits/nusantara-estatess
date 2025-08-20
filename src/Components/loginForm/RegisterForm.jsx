@@ -123,8 +123,8 @@ const RegisterForm = () => {
     <div>
         <div className="form-container">
             <form onSubmit={handleSubmit}>
-            <div className="form-title">
-                <img src="/logo/logo.png" alt="logo" />
+            <div className="title-con">
+                <img src="/logo/logo2.png" alt="logo" />
                 <h1>Selamat Datang</h1>
                 <p>Masukkan informasi yang diperlukan di bawah ini untuk membuat akun baru. Pastikan data yang Anda masukkan sudah benar.</p>
             </div>
@@ -155,7 +155,7 @@ const RegisterForm = () => {
               </div>
             )}
 
-            <div className="input-group">
+            <div className="input-group-login">
                 <label htmlFor="username">Username</label>
                 <input 
                   type="text" 

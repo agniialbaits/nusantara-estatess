@@ -6,4 +6,65 @@
     align-items: center;
     background: linear-gradient(135deg, #B3E5FC 0%, #E1F5FE 100%);
     padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background decoration */
+.login-page::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    animation: float 20s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(10px, 10px) rotate(1deg); }
+    50% { transform: translate(-5px, 15px) rotate(-1deg); }
+    75% { transform: translate(-10px, 5px) rotate(1deg); }
+}
+
+/* Responsive design for login page */
+@media (max-width: 768px) {
+    .login-page {
+        padding: 15px;
+        align-items: flex-start;
+        padding-top: 40px;
+    }
+    
+    .login-page::before {
+        animation-duration: 30s;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-page {
+        padding: 10px;
+        padding-top: 20px;
+        background: linear-gradient(135deg, #B3E5FC 0%, #E1F5FE 100%);
+    }
+}
+
+@media (max-width: 360px) {
+    .login-page {
+        padding: 5px;
+        padding-top: 15px;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .login-page {
+        /* background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); */
+    }
+    
+    .login-page::before {
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+    }
 }
