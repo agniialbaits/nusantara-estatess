@@ -1,10 +1,12 @@
- .content-title {
+ .content-title-result {
     background-color: white;
     width: 1400px;
-    padding-top: 20px;
+    /* padding-top: 20px; */
     padding-bottom: 20px;
-    margin-top: 500px;
+    /* margin-top: 500px; */
 }
+
+@media ()
 
 .content-title h1{
     margin-left: 100px;
@@ -58,14 +60,6 @@
   font-weight: bold;
 }
 
-.filter-button {
-  background-color: #e0f2f5;
-  border: 1px solid #999;
-  border-radius: 6px;
-  padding: 6px 12px;
-  font-size: 14px;
-  cursor: pointer;
-} 
 .custom-pagination .page-item {
   margin: 0 6px;
 }

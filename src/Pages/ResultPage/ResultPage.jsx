@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import Navbar from '../../Components/navbar/navbar';
 import Footer from '../../Components/footer/footer';
 import Result from '../../Components/result/Result';
-import './ResultPage.css';
+import '../../Components/rumah/RumahPage.css';
 
 const ResultPage = () => {
     const location = useLocation();
@@ -12,17 +12,21 @@ const ResultPage = () => {
     return (
         <div>
             <Navbar />
-            <div className='content-title' style={{marginTop:'1700px'}}>
-                <h1>Hasil Pencarian</h1>
+            <div className='title'>
+                <div className='isi-title'>
+                <h1>
+                    Hasil Pencarian
+                </h1>
                 <p>
-                    {tipe && lokasi 
-                        ? `Menampilkan hasil pencarian untuk ${tipe} di ${lokasi}`
-                        : 'Hasil pencarian tidak ditemukan'
+                    {lokasi 
+                        ? `Menampilkan hasil pencarian ${tipe} di ${lokasi}` 
+                        : 'Berikut ini beberapa rumah dengan tipe model modern di berbagai lokasi'
                     }
                 </p>
+                </div>
             </div>
-            <div className="carirumah-container">
-                <div className="search-section">
+            <div className="carirumah">
+                <div className="search">
                     <div className="search-box-carirumah">
                         <input
                             type="text"
@@ -30,10 +34,7 @@ const ResultPage = () => {
                             className="search-input"
                             defaultValue={lokasi || ''}
                         />
-                        <button className="search-button">Cari</button>
-                    </div>
-                    <div className="filter">
-                        <button className="filter-button">Tipe ^ </button>
+                        <button className="Sbutton">Cari</button>
                     </div>
                 </div>
             </div>

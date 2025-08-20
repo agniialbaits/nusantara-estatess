@@ -8,7 +8,7 @@ const ResultTipe = () => {
             return (
         <div>
               <Navbar />
-            <div className='content-title' style={{marginTop:'1700px'}}>
+            <div className='content-title-result' style={{marginTop:'1700px'}}>
 
                 <h1>Tipe Rumah Classic</h1>
                 <p>Menampilkan Tipe rumah classic yang berlokasi di Sumedang</p>
@@ -22,10 +22,6 @@ const ResultTipe = () => {
                             className="search-input"
                         />
                         <button className="search-button">Cari</button>
-                    </div>
-
-                    <div className="filter">
-                        <button className="filter-button">Tipe ^ </button>
                     </div>
                 </div>
             </div>
