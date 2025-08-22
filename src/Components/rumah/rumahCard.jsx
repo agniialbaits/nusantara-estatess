@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
-import './rumahcard.css'; 
+import './rumahCard.css'; 
 
 const RumahCard = () => {
   
