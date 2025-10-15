@@ -17,7 +17,9 @@ import AdminPage from './Pages/adminpage/AdminPage';
 import AdminTablePage from './Pages/admintable/AdminTablePage';
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute';
 import TipeRumahDetail from './Pages/TipeRumahDetail/TipeRumahDetail';
-
+import apiService from './services/api';
+import { login as authLogin, saveAuthToken } from './services/authService';
+import { httpFetch } from './services/httpClient';
 
 // Context untuk user authentication
 export const AuthContext = createContext();
@@ -35,121 +37,72 @@ function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Fungsi untuk login
+  // Fungsi untuk login (gunakan authService + http client)
   const login = async (username, password) => {
     try {
       console.log('🔄 Attempting login for:', username);
-      console.log('🌐 Connecting to:', 'http://localhost:5174/api/login');
-      
-      const response = await fetch('http://localhost:5174/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
 
-      console.log('📡 Response status:', response.status);
-      console.log('📡 Response ok:', response.ok);
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error('❌ HTTP Error:', response.status, errorText);
-        return { 
-          success: false, 
-          message: `Server error: ${response.status} - ${errorText}` 
-        };
-      }
-
-      const data = await response.json();
+      const data = await authLogin({ username, password });
       console.log('📦 Response data:', data);
-      
-      if (data.success) {
+
+      if (data?.success) {
         setUser(data.user);
         localStorage.setItem('userId', data.user.id);
         localStorage.setItem('userRole', data.user.role);
         localStorage.setItem('username', data.user.username);
         localStorage.setItem('userEmail', data.user.email);
-        
-        // Simpan token jika ada
+
         if (data.token) {
+          saveAuthToken(data.token);
           localStorage.setItem('authToken', data.token);
         }
-        
+
         console.log('✅ Login successful:', {
           username: data.user.username,
           role: data.user.role,
           isAdmin: data.user.isAdmin
         });
-        
+
         return { success: true, message: data.message };
-      } else {
-        console.log('❌ Login failed:', data.message);
-        return { success: false, message: data.message };
       }
+
+      const message = data?.message || 'Login gagal.';
+      console.log('❌ Login failed:', message);
+      return { success: false, message };
     } catch (error) {
       console.error('💥 Login error:', error);
-      
-      // Cek jenis error
-      if (error.name === 'TypeError' && error.message.includes('fetch')) {
-        return { 
-          success: false, 
-          message: 'Tidak dapat terhubung ke server. Pastikan server backend berjalan di port 5174.' 
-        };
-      } else if (error.name === 'SyntaxError') {
-        return { 
-          success: false, 
-          message: 'Server mengembalikan response yang tidak valid.' 
-        };
-      } else {
-        return { 
-          success: false, 
-          message: `Terjadi kesalahan koneksi: ${error.message}` 
-        };
+      // Pesan koneksi yang ramah saat dev tapi juga cocok untuk prod
+      if (error?.status) {
+        return { success: false, message: `Server error: ${error.status} - ${error.message}` };
       }
+      return { success: false, message: 'Tidak dapat terhubung ke server. Silakan coba lagi beberapa saat.' };
     }
   };
 
-  // Fungsi untuk register dengan auto-login
+  // Fungsi untuk register dengan auto-login (gunakan http client)
   const register = async (username, email, password) => {
     try {
-      const response = await fetch('http://localhost:5174/api/register', {
+      const data = await httpFetch('/register', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
         body: JSON.stringify({ username, email, password }),
       });
 
-      const data = await response.json();
-      
-      // Jika registrasi berhasil, langsung login otomatis
-      if (data.success) {
+      if (data?.success) {
         console.log('Registration successful, attempting auto-login...');
-        
-        // Auto-login setelah registrasi berhasil
         const loginResult = await login(username, password);
-        
         if (loginResult.success) {
           console.log('Auto-login successful after registration');
-          return { 
-            success: true, 
-            message: 'Registrasi berhasil! Anda telah otomatis login.',
-            autoLogin: true 
-          };
-        } else {
-          // Jika auto-login gagal, tetap return success untuk registrasi
-          return { 
-            success: true, 
-            message: 'Registrasi berhasil! Silakan login manual.',
-            autoLogin: false 
-          };
+          return { success: true, message: 'Registrasi berhasil! Anda telah otomatis login.', autoLogin: true };
         }
+        return { success: true, message: 'Registrasi berhasil! Silakan login manual.', autoLogin: false };
       }
-      
+
       return data;
     } catch (error) {
       console.error('Register error:', error);
+      if (error?.status) {
+        return { success: false, message: `Server error: ${error.status} - ${error.message}` };
+      }
       return { success: false, message: 'Terjadi kesalahan koneksi' };
     }
   };
@@ -195,35 +148,21 @@ function App() {
     forceLogoutAllUsers();
   }, []);
 
-  // Test koneksi database
+  // Test koneksi database (gunakan base URL dari env via http client)
   useEffect(() => {
     const testDatabaseConnection = async () => {
       try {
-        // Tambahkan timestamp untuk cache busting tanpa header Cache-Control
-        const response = await fetch(`http://localhost:5174/api/test-db?t=${Date.now()}`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        });
-        
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        
-        if (data.success) {
+        const data = await httpFetch(`/test-db?t=${Date.now()}`);
+        if (data?.success) {
           console.log('✅ Koneksi database OK. Hasil:', data.result);
         } else {
-          console.error('❌ Gagal koneksi ke database:', data.message);
+          console.error('❌ Gagal koneksi ke database:', data?.message || 'Unknown error');
         }
       } catch (err) {
-        console.warn('⚠️ Backend server tidak berjalan atau tidak dapat diakses:', err.message);
-        console.log('💡 Untuk menjalankan backend server, gunakan: npm run server');
+        console.warn('⚠️ Backend tidak dapat diakses:', err?.message || err);
       }
     };
-    
+
     testDatabaseConnection();
   }, []);
 

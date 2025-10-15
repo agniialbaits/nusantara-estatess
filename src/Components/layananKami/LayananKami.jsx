@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './layanankami.css';
+import { httpFetch } from '../../services/httpClient';
 
 const LayananKami = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -66,21 +67,16 @@ const LayananKami = () => {
         setIsSearching(true);
         
         try {
-            // Panggil API untuk mencari rumah berdasarkan tipe dan lokasi
-            const response = await fetch(`http://localhost:5174/api/search-rumah`, {
+            // Panggil API untuk mencari rumah berdasarkan tipe dan lokasi (gunakan http client + base URL env)
+            const data = await httpFetch('/search-rumah', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
                 body: JSON.stringify({
                     tipe: selectedHouseType,
                     lokasi: locationInput
                 })
             });
             
-            const data = await response.json();
-            
-            if (data.success && data.results && data.results.length > 0) {
+            if (data?.success && data.results && data.results.length > 0) {
                 // Jika ada hasil, arahkan ke halaman rumah dengan parameter pencarian
                 navigate('/rumah', { 
                     state: { 

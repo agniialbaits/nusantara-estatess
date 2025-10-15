@@ -1,27 +1,13 @@
 // API service untuk komunikasi dengan backend
-const API_BASE_URL = 'http://localhost:5174/api';
+// NOTE: Generic data APIs tetap di sini. Auth dipindahkan ke src/services/authService.js
+
+import { httpFetch } from './httpClient';
 
 class ApiService {
-  // Generic fetch method dengan error handling
+  // Generic fetch method dengan error handling (delegasi ke httpFetch)
   async fetchData(endpoint, options = {}) {
     try {
-      const token = localStorage.getItem('token');
-      
-      const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          ...(token && { 'Authorization': `Bearer ${token}` }),
-          ...options.headers,
-        },
-        ...options,
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      return data;
+      return await httpFetch(endpoint, options);
     } catch (error) {
       console.error('API Error:', error);
       throw error;
@@ -47,15 +33,7 @@ class ApiService {
     return await this.fetchData(`/properties/${id}`);
   }
 
-  // Login user
-  async login(credentials) {
-    return await this.fetchData('/login', {
-      method: 'POST',
-      body: JSON.stringify(credentials),
-    });
-  }
-
-  // Register user
+  // Register user (tetap di generic API)
   async register(userData) {
     return await this.fetchData('/register', {
       method: 'POST',
@@ -89,6 +67,11 @@ class ApiService {
       method: 'POST',
       body: JSON.stringify(propertyData),
     });
+  }
+
+  // Get property by ID (admin only)
+  async getAdminPropertyById(id) {
+    return await this.fetchData(`/admin/properties/${id}`);
   }
 
   // Update property (admin only)
